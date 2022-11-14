@@ -42,11 +42,17 @@ public class BadIOGUI {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JButton write = new JButton("Write on file");
-        
+
+        //Point 01.01
         final JPanel newCanvas = new JPanel();
         newCanvas.setLayout(new BoxLayout(newCanvas, BoxLayout.LINE_AXIS));
         canvas.add(newCanvas, BorderLayout.CENTER);
         newCanvas.add(write);
+
+        //Point 01.02
+        final JButton read = new JButton("Read");
+        newCanvas.add(read);
+
 
         frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,6 +74,22 @@ public class BadIOGUI {
                 } catch (IOException e1) {
                     JOptionPane.showMessageDialog(frame, e1, "Error", JOptionPane.ERROR_MESSAGE);
                     e1.printStackTrace(); // NOPMD: allowed as this is just an exercise
+                }
+            }
+        });
+
+        read.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent arg0) {
+                final List<String> file;
+                try {
+                    file = Files.readAllLines(new File(PATH).toPath(), StandardCharsets.UTF_8);
+                    for (final String el : file) {
+                        System.out.println(el); // NOPMD : allowed as this is just an exercise
+                    }
+                } catch (IOException e2) {
+                    JOptionPane.showMessageDialog(frame, e2, "Error", JOptionPane.ERROR_MESSAGE);
+                    e2.printStackTrace(); // NOPMD: allowed as this is just an exercise
                 }
             }
         });
