@@ -62,7 +62,7 @@ public final class SimpleGUI {
                 showHistory.setText("");
                 final List<String> story = controller.getHistory();
                 for (final String el : story) {
-                    showHistory.setText(showHistory.getText() + el);
+                    showHistory.setText(showHistory.getText() + "\n" + el);
                 } 
             } 
         }); 
