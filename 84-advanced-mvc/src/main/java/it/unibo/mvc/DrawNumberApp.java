@@ -1,5 +1,6 @@
 package it.unibo.mvc;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,7 +65,10 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
      * @throws Exception
      */
     public static void main(final String... args) throws Exception {
-        new DrawNumberApp(new DrawNumberViewImpl());
+        final String PATH = System.getProperty("user.home")
+            + File.separator
+            + DrawNumberApp.class.getSimpleName() + ".txt";
+        new DrawNumberApp(new DrawNumberViewImpl(), new DrawNumberViewImpl(), new PrintStreamView(PATH));
     }
 
 }
