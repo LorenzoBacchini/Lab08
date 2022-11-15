@@ -1,6 +1,5 @@
 package it.unibo.mvc;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,9 +18,8 @@ public final class SimpleGUI {
 
     private final int PROPORTION = 5;
     private final JFrame frame = new JFrame();
-    private final Controller controller = new Controller();
 
-    public SimpleGUI(){
+    public SimpleGUI(Controller controller){
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JTextArea text = new JTextArea();
@@ -53,7 +51,7 @@ public final class SimpleGUI {
     }
 
     public static void main(String[] args) {
-       new SimpleGUI().display();
+       new SimpleGUI(new Controller()).display();
     }
 
 }
