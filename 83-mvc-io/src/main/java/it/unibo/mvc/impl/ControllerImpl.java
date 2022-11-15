@@ -10,9 +10,7 @@ public class ControllerImpl implements Controller{
     private String currentString;
     private final List<String> stringHistory = new ArrayList<>();
 
-    public ControllerImpl(final String currentString){
-        setString(currentString);
-    }
+    public ControllerImpl(){}
 
     @Override
     public void setString(final String newString) {
@@ -36,13 +34,11 @@ public class ControllerImpl implements Controller{
 
     @Override
     public void print() {
-        try {
-            Objects.requireNonNull(this.currentString);
+        if(this.currentString != null){
             System.out.println(this.currentString); //NOPMD
             this.stringHistory.add(this.currentString);
-        }catch(NullPointerException e){
-            System.out.println("Null values are not accepted"); //NOPMD
+        }else{
+            throw new IllegalStateException("The string is null");
         }
     }
-    
 }
