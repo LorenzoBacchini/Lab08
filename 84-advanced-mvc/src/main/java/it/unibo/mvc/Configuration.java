@@ -1,5 +1,8 @@
 package it.unibo.mvc;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.StringTokenizer;
 
 /**
  * Encapsulates the concept of configuration.
@@ -15,6 +18,41 @@ public final class Configuration {
         this.min = min;
         this.attempts = attempts;
     }
+
+
+    static Configuration importConfiguration() {
+        final Builder b = new Builder();
+        try (final BufferedReader r = new BufferedReader(
+            new FileReader("src/main/resources/config.yml")))   
+        {
+            StringTokenizer st;
+            String line;
+            while( (line = r.readLine()) != null ){
+                st = new StringTokenizer(line);
+                switch (st.nextToken()) {
+                    case "minimum:":
+                        b.setMin(Integer.parseInt(st.nextToken()));
+                        break;
+
+                    case "maximum:":
+                        b.setMax(Integer.parseInt(st.nextToken()));
+                        break;
+
+                    case "attempts:":
+                        b.setAttempts(Integer.parseInt(st.nextToken()));
+                        break;
+
+                    default:
+                        System.out.println("Configuration file format not supported");
+                        break;
+                }
+            }
+        }catch(Exception e){
+            System.out.println("Error opening file .yml"); //NOPMD
+        }
+        return b.build();
+    }
+
 
     /**
      * @return the maximum value
