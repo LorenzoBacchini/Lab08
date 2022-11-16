@@ -29,22 +29,25 @@ public final class Configuration {
             String line;
             while( (line = r.readLine()) != null ){
                 st = new StringTokenizer(line);
-                switch (st.nextToken()) {
-                    case "minimum:":
-                        b.setMin(Integer.parseInt(st.nextToken()));
-                        break;
+                final String[] lineEl = line.split(":");
+                if (lineEl.length == 2){
+                    switch (st.nextToken()) {
+                        case "minimum:":
+                            b.setMin(Integer.parseInt(st.nextToken()));
+                            break;
 
-                    case "maximum:":
-                        b.setMax(Integer.parseInt(st.nextToken()));
-                        break;
+                        case "maximum:":
+                            b.setMax(Integer.parseInt(st.nextToken()));
+                            break;
 
-                    case "attempts:":
-                        b.setAttempts(Integer.parseInt(st.nextToken()));
-                        break;
+                        case "attempts:":
+                            b.setAttempts(Integer.parseInt(st.nextToken()));
+                            break;
 
-                    default:
-                        System.out.println("Configuration file format not supported");
-                        break;
+                        default:
+                            System.out.println("Configuration file format not supported");
+                            break;
+                    }
                 }
             }
         }catch(Exception e){
