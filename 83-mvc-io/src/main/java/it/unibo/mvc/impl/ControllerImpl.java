@@ -6,38 +6,52 @@ import java.util.Objects;
 
 import it.unibo.mvc.Controller;
 
-public class ControllerImpl implements Controller{
+/**
+ * class that implement Controller.
+ * 
+ * this class set a String and print it with
+ * the method print
+ */
+public class ControllerImpl implements Controller {
     private String currentString;
     private final List<String> stringHistory = new ArrayList<>();
 
-    public ControllerImpl(){}
-
+    /**
+     * set the current string to newString (if not null).
+     */
     @Override
     public void setString(final String newString) {
-        try {
-            Objects.requireNonNull(newString);
-            this.currentString = newString;
-        }catch(NullPointerException e){
-            System.out.println("Null values are not accepted"); //NOPMD
-        }
+        Objects.requireNonNull(newString);
+        this.currentString = newString;
     }
 
+    /**
+     * @return the current string to print
+     */
     @Override
     public String getString() {
-        return new String(this.currentString);
+        return this.currentString;
     }
 
+    /**
+     * @return a list<String> containing the history of printed string
+     */
     @Override
     public List<String> getHistory() {
         return new ArrayList<>(this.stringHistory);
     }
 
+    /**
+     * print the currenti string.
+     * 
+     * @throws IllegalStateException if current string is null
+     */
     @Override
     public void print() {
-        if(this.currentString != null){
+        if (this.currentString != null) {
             System.out.println(this.currentString); //NOPMD
             this.stringHistory.add(this.currentString);
-        }else{
+        } else {
             throw new IllegalStateException("The string is null");
         }
     }

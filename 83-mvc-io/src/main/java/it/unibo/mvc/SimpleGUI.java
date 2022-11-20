@@ -25,7 +25,13 @@ public final class SimpleGUI {
     private static final int PROPORTION = 5;
     private final JFrame frame = new JFrame();
 
-    public SimpleGUI(ControllerImpl controller){
+    /**
+     * Constructor of SimpleGUI, where the 
+     * Graphic interface is created.
+     * 
+     * @param controller
+     */
+    public SimpleGUI(final ControllerImpl controller) {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JPanel canvas1 = new JPanel();
@@ -48,15 +54,15 @@ public final class SimpleGUI {
         /**
          * Handlers
          */
-        print.addActionListener(new ActionListener(){
+        print.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent arg0) {
                 controller.setString(showPrint.getText());
                 controller.print();
-            }    
+            }
         });
 
-        history.addActionListener(new ActionListener(){
+        history.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent arg0) {
                 showHistory.setText("");
@@ -65,11 +71,10 @@ public final class SimpleGUI {
                     showHistory.setText(showHistory.getText() + "\n" + el);
                 } 
             } 
-        }); 
-        
+        });
     }
 
-    private void display(){
+    private void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
@@ -78,7 +83,12 @@ public final class SimpleGUI {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Main.
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
         new SimpleGUI(new ControllerImpl()).display();
     }
 }
