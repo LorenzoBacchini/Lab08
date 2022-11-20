@@ -22,15 +22,14 @@ public final class Configuration {
 
     static Configuration importConfiguration() {
         final Builder b = new Builder();
-        try (final BufferedReader r = new BufferedReader(
-            new FileReader("src/main/resources/config.yml")))   
-        {
+        try (BufferedReader r = new BufferedReader(
+            new FileReader("src/main/resources/config.yml"))) {
             StringTokenizer st;
             String line;
-            while( (line = r.readLine()) != null ){
+            while ((line = r.readLine()) != null) {
                 st = new StringTokenizer(line);
                 final String[] lineEl = line.split(":");
-                if (lineEl.length == 2){
+                if (lineEl.length == 2) {
                     switch (st.nextToken()) {
                         case "minimum:":
                             b.setMin(Integer.parseInt(st.nextToken()));
@@ -45,12 +44,12 @@ public final class Configuration {
                             break;
 
                         default:
-                            System.out.println("Configuration file format not supported");
+                            System.out.println("Configuration file format not supported"); //NOPMD
                             break;
                     }
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error opening file .yml"); //NOPMD
         }
         return b.build();
@@ -111,7 +110,7 @@ public final class Configuration {
         private int min = MIN;
         private int max = MAX;
         private int attempts = ATTEMPTS;
-        private boolean consumed = false;
+        private boolean consumed = false;   //NOPMD normally boolean are set to false but i want to make it explicit
 
         /**
          * @param min the minimum value

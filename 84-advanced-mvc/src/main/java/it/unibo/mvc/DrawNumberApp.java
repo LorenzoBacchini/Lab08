@@ -65,10 +65,10 @@ public final class DrawNumberApp implements DrawNumberViewObserver {
      * @throws Exception
      */
     public static void main(final String... args) throws Exception {
-        final String PATH = System.getProperty("user.home")
+        final String path = System.getProperty("user.home")
             + File.separator
             + DrawNumberApp.class.getSimpleName() + ".txt";
-        new DrawNumberApp(new DrawNumberViewImpl(), new DrawNumberViewImpl(), new PrintStreamView(PATH));
+        new DrawNumberApp(new DrawNumberViewImpl(), new DrawNumberViewImpl(), new PrintStreamView(path));
     }
 
 }
