@@ -23,10 +23,15 @@ import java.io.File;
  */
 public final class SimpleGUIWithFileChooser {
 
-    private final int PROPORTION = 5;
+    private static final int PROPORTION = 5;
     private final JFrame frame = new JFrame();
 
-    public SimpleGUIWithFileChooser(Controller controller){
+    /**
+     * Constructor of SimpleGUIWithFIleChooser.
+     * 
+     * @param controller
+     */
+    public SimpleGUIWithFileChooser(final Controller controller) {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JPanel select = new JPanel();
@@ -46,32 +51,32 @@ public final class SimpleGUIWithFileChooser {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         /**
-         * Handlers
+         * Handlers.
          */
-        save.addActionListener(new ActionListener(){
+        save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent arg0) {
                 controller.writeString(text.getText());
             }
         });
 
-        browse.addActionListener(new ActionListener(){
+        browse.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent arg0) {
                 final JFileChooser chooser = new JFileChooser();
-                int option = chooser.showSaveDialog(frame);
-                if(option == JFileChooser.APPROVE_OPTION){
+                final int option = chooser.showSaveDialog(frame);
+                if (option == JFileChooser.APPROVE_OPTION) {
                     final File newFile = chooser.getSelectedFile();
                     controller.setFile(newFile);
                     selectedFile.setText(controller.getPath());
-                }else if(option == JFileChooser.CANCEL_OPTION){
+                } else if (option == JFileChooser.CANCEL_OPTION) {
                     JOptionPane.showMessageDialog(frame, "Selected file Error");
                 }
             }
         });
     }
 
-    private void display(){
+    private void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
@@ -80,7 +85,12 @@ public final class SimpleGUIWithFileChooser {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Main method.
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
        new SimpleGUIWithFileChooser(new Controller()).display();
     }
 

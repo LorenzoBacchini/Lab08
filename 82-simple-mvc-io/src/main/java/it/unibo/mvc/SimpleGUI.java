@@ -16,10 +16,15 @@ import java.awt.event.ActionListener;
  */
 public final class SimpleGUI {
 
-    private final int PROPORTION = 5;
+    private static final int PROPORTION = 5;
     private final JFrame frame = new JFrame();
 
-    public SimpleGUI(Controller controller){
+    /**
+     * Constructor of SimpleGUI.
+     * 
+     * @param controller
+     */
+    public SimpleGUI(final  Controller controller) {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         final JTextArea text = new JTextArea();
@@ -33,15 +38,15 @@ public final class SimpleGUI {
         /**
          * Handlers
          */
-        save.addActionListener(new ActionListener(){
+        save.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent arg0) {
+            public void actionPerformed(final ActionEvent arg0) {
                 controller.writeString(text.getText());
             }
         });
     }
 
-    private void display(){
+    private void display() {
         final Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         final int sw = (int) screen.getWidth();
         final int sh = (int) screen.getHeight();
@@ -50,7 +55,12 @@ public final class SimpleGUI {
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /**
+     * Main method.
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
        new SimpleGUI(new Controller()).display();
     }
 

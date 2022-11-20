@@ -14,23 +14,44 @@ public class Controller {
         + "output.txt";
     private File file;
 
-    public Controller(){
+    /**
+     * Constructor method.
+     */
+    public Controller() {
         this.file = new File(DEFAULT_PATH);
     }
 
-    public void setFile(File newFile){
+    /**
+     * Set the file to the value of newFile.
+     * 
+     * @param newFile
+     */
+    public void setFile(final File newFile) {
         this.file = newFile;
     }
 
-    public File getFile(){
+    /**
+     * 
+     * @return the file where String are written
+     */
+    public File getFile() {
         return this.file;
     }
 
-    public String getPath(){
+    /**
+     * 
+     * @return the path of the file
+     */
+    public String getPath() {
         return this.file.getAbsolutePath();
     }
 
-    public void writeString(String text){
+    /**
+     * Write the String text on this.file.
+     * 
+     * @param text
+     */
+    public void writeString(final String text) {
         try (PrintStream ps = new PrintStream(this.file, StandardCharsets.UTF_8)) {
             ps.print(text);
         } catch (IOException e1) {
